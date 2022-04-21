@@ -1,0 +1,23 @@
+{
+  "name": "apirest",
+  "version": "1.0.0",
+  "description": "API-REST server to mobile web scraping project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cheerio",
+    "expressjs",
+    "nodejs",
+    "typeorm",
+    "sql",
+    "backend",
+    "server"
+  ],
+  "author": "Chris",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
