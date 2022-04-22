@@ -4,10 +4,8 @@
   "description": "API-REST server to mobile web scraping project",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "ts-build": "rm -rf ./dist && tsc",
-    "prestart": "npm run ts-build",
-    "start": "node dist/backend/src/index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
   },
   "keywords": [
     "cheerio",
@@ -28,15 +26,9 @@
     "express": "^4.17.3",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
-    "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.6"
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
-    "@types/express": "^4.17.13",
-    "@types/mysql": "^2.15.21",
-    "@types/node": "^17.0.25",
-    "nodemon": "^2.0.15",
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.3"
+  
   }
 }
