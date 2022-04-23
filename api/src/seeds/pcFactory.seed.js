@@ -1,5 +1,6 @@
 const cheerio = require('cheerio');
 const axios = require('axios');
+const { response, request } = require('express');
 const { PCFACTORY } = require('../endpoints/pcFactory');
 
 
@@ -58,16 +59,7 @@ const getNotebooksInfo = async (notebookName) => {
     return productInfo;
 }
 
-const loadNotebooks = async () => {
-    const extractedNotebooks = await extractNotebooks();
-    const notebooksInfoPromises = extractedNotebooks.map(async (notebookName) => {
-        const notebookInfo = await getNotebooksInfo(notebookName);
-        return notebookInfo;
-    }
-    );
-    const notebooksInfo = await Promise.all(notebooksInfoPromises);
-    //console.log('notebooksInfo ===>', notebooksInfo);
-    return notebooksInfo;
+module.exports = {
+    extractNotebooks,
+    getNotebooksInfo
 }
-
-module.exports = { extractNotebooks, getNotebooksInfo, loadNotebooks };
