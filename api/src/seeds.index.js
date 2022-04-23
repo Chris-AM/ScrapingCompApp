@@ -1,3 +1,3 @@
-const {extractCategories} = require('./seeds/pcFactory.seed');
+const {loadNotebooks} = require('./seeds/pcFactory.seed');
 
-extractCategories();
+loadNotebooks();
