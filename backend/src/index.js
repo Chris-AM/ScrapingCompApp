@@ -17,11 +17,7 @@ const port = process.env.PORT || 3000;
 dbConnection();
 
 //routes
-app.get('/', (req, res) => {
-    res.json({
-      msg: 'Hello World'
-    });
-});
+app.use('/api/stores', require('./routes/stores.routes'));
 
 app.listen(port, () => {
   console.log('Server is running on port ' + port)
