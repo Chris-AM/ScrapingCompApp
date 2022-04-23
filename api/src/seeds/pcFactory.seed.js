@@ -4,13 +4,12 @@ const {PCFACTORY} = require('../endpoints/pcFactory');
 
 
 const extractNotebooks = async () => {
-
     const url = PCFACTORY.BASE_URL + PCFACTORY.NOTE_BOOKS;
     const {data} = await axios.get(url);
     const $ = cheerio.load(data);
     const notebooks = $('div.product-list');
     //console.log('notebooks ===> ', notebooks);
-    const notebooksArray = ["name"];
+    const notebooksArray = ["productPathName"];
     for(let i = 0 ; i < notebooks.length; i++){
         const notebook = notebooks[i];
         const notebooksDivs = $(notebook).find('div.product');
@@ -19,10 +18,11 @@ const extractNotebooks = async () => {
             //console.log('notebookDiv ===>', notebookDiv);
             const productRelative = $(notebookDiv).find('div.p-relative');
             //console.log('productRelative ===>', productRelative);
-            const productPath = $(productRelative).find('a.product-ab-link').attr('href');
+            const productPath = $(productRelative).find('a.product-ab-link').attr('href') || "";
             //console.log('product path ===>', productPath);
             const productPathName = productPath.replace('/producto/', "");
             //console.log('product path name ===>', productPathName);
+            notebooksArray.push(productPathName);
         }
         
     }
