@@ -14,6 +14,14 @@ const getStores = async (req = request, res = response) => {
     });
 };
 
+const createStore = async (req = request, res = response) => {
+    res.status(200).json({
+        ok: true,
+        message: 'Create a new store',
+    });
+};
+
 module.exports = {
-    getStores
+    getStores,
+    createStore
 };
