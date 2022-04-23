@@ -17,7 +17,12 @@ const port = 3100;
 //dbConnection();
 
 //routes
-//app.use('/api/stores', require('./routes/stores.routes'));
+app.get('/', (req, res) => {
+    res.json({
+        message: 'Welcome to the Scraping Comp Flutter API'
+    });
+});
+app.use('/api/stores/pc-factory', require('./routes/pcFactory.routes'));
 
 app.listen(port, () => {
     console.log('Server is running on port ' + port)
