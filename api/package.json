@@ -4,7 +4,8 @@
   "description": "api rest for backend",
   "main": "seeds.index.js",
   "scripts": {
-    "dev-scrap": "nodemon src/seeds.index.js"
+    "dev-scrap": "nodemon src/seeds.index.js",
+    "seed-db": "node src/seeds.index.js"
   },
   "repository": {
     "type": "git",
