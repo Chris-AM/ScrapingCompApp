@@ -5,6 +5,7 @@
   "main": "seeds.index.js",
   "scripts": {
     "dev-scrap": "nodemon src/seeds.index.js",
+    "dev-db": "nodemon src/seeds.index.js",
     "seed-db": "node src/seeds.index.js"
   },
   "repository": {
