@@ -21,6 +21,8 @@ const extractNotebooks = async () => {
             //console.log('productRelative ===>', productRelative);
             const productPath = $(productRelative).find('a.product-ab-link').attr('href');
             //console.log('product path ===>', productPath);
+            const productPathName = productPath.replace('/producto/', "");
+            //console.log('product path name ===>', productPathName);
         }
         
     }
