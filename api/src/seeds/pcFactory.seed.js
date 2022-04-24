@@ -29,13 +29,12 @@ const extractNotebooks = async () => {
     return notebooksArray;
 }
 
-const getNotebooksInfo = async (notebookName) => {
+const getNotebooksInfo = async (notebookName = '') => {
     const url = PCFACTORY.BASE_URL + PCFACTORY.PRODUCT + notebookName;
-    //const devURL = PCFACTORY.BASE_URL + PCFACTORY.PRODUCT + '42840-lenovo-notebook-cloudbook-detachable-ideapad-d330-10-1-hd-celeron-n4020-4gb-ram-64gb-emmc-windows-10--office-home--student-preinstalado-mineral-grey'
-    //console.log('url ===> ',url)
     const { data } = await axios.get(url);
-    //console.log('data ===> ', data);
     const $ = cheerio.load(data);
+    //obtainint id from url
+    const notebookId = notebookName.substring(0, notebookName.indexOf('-'));
     //removing PcFactory's products wrapper
     let productNameWrapper = $('div.product-single__description-mobile');
     let productImageWraper = $('div.product-single__image-container');
@@ -46,14 +45,11 @@ const getNotebooksInfo = async (notebookName) => {
     let productName = $(productNameWrapper).find('div.paragraph, color-dark-2').text();
     let productImage = PCFACTORY.BASE_URL + $(productImageUrlWrapper).find('img').attr('src');
     let productSummary = $(productSummaryTableWrapper).find('div.table__content, table__content--two-column').text();
-    // console.log('product name ===>', productName);
-    // console.log('product image ===>', productImage);
-    // console.log('product summary ===>', productSummary);
-    if(!productName || !productImage || !productSummary){
+    if( !notebookId || !productName || !productImage || !productSummary){
         return null;
     }
     const productInfo = {
-        url, productName, productImage, productSummary
+        notebookId, url, productName, productImage, productSummary
     }
     //console.log('productInfo ===>', productInfo);
     return productInfo;
