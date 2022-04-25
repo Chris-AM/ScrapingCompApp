@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
-//const { dbConnection } = require('./db/config');
+const { dbConnection } = require('./db/config');
 
 
 const app = express();
@@ -14,7 +14,7 @@ app.use(cors());
 
 const port = 3100;
 
-//dbConnection();
+dbConnection();
 
 //routes
 app.get('/', (req, res) => {
