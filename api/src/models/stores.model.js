@@ -13,6 +13,19 @@ const storeSchema = Schema({
         type: String,
         required: true, 
     },
+    products: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Product',
+            required: true,
+        }
+    ],
+
+});
+
+ReceiverSchema.method('toJSON', function () {
+    const {__v, ...object} = this.toObject();
+    return object;
 });
 
 module.exports = model('Store', storeSchema);
