@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const storeSchema = Schema({
+const StoreSchema = Schema({
     name: {
         type: String,
         required: true,
@@ -17,15 +17,15 @@ const storeSchema = Schema({
         {
             type: Schema.Types.ObjectId,
             ref: 'Product',
-            required: true,
+            required: false,
         }
     ],
 
 });
 
-ReceiverSchema.method('toJSON', function () {
+StoreSchema.method('toJSON', function () {
     const {__v, ...object} = this.toObject();
     return object;
 });
 
-module.exports = model('Store', storeSchema);
+module.exports = model('Store', StoreSchema);

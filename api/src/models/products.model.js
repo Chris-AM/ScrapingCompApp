@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const productSchema = Schema({
+const ProductSchema = Schema({
 
     name: {
         type: String,
@@ -30,9 +30,9 @@ const productSchema = Schema({
 
 });
 
-ReceiverSchema.method('toJSON', function () {
+ProductSchema.method('toJSON', function () {
     const {__v, ...object} = this.toObject();
     return object;
 });
 
-module.exports = model('Product', productSchema);
+module.exports = model('Product', ProductSchema);
