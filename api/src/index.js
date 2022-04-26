@@ -12,7 +12,7 @@ const app = express();
 
 app.use(cors());
 
-const port = 3100;
+const port = process.env.PORT || 3100;
 
 dbConnection();
 
@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
         message: 'Welcome to the Scraping Comp Flutter API'
     });
 });
+
 app.use('/api/stores/pc-factory', require('./routes/pcFactory.routes'));
 
 app.listen(port, () => {
