@@ -1,3 +1,7 @@
+const { request, response } = require('express');
+
+const Product = require('../models/products.model');
+
 const { extractNotebooks, getNotebooksInfo } = require ('../seeds/pcFactory.seed');
 
 const loadNotebooks = async (req = request, res = response) => {
@@ -8,7 +12,7 @@ const loadNotebooks = async (req = request, res = response) => {
     }
     );
     const notebooksInfo = await Promise.all(notebooksInfoPromises);
-    //console.log('notebooksInfo ===>', notebooksInfo);
+
     res.status(200).json({
         message: 'Notebooks loaded successfully',
         data: notebooksInfo
