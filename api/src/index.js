@@ -12,6 +12,8 @@ const app = express();
 
 app.use(cors());
 
+app.use(express.json());
+
 const port = process.env.PORT || 3100;
 
 dbConnection();
@@ -23,6 +25,8 @@ app.get('/', (req, res) => {
     });
 });
 
+
+app.use('/api/stores', require('./routes/stores.routes'));
 app.use('/api/stores/pc-factory', require('./routes/pcFactory.routes'));
 
 app.listen(port, () => {
