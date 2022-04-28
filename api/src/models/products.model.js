@@ -26,7 +26,7 @@ const ProductSchema = Schema({
         type: String,
         required: true,
     },
-    store: {
+    storeId: {
         type: Schema.Types.ObjectId,
         ref: 'Store',
         required: true,
