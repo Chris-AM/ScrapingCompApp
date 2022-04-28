@@ -13,22 +13,25 @@ const loadNotebooks = async (req = request, res = response) => {
     }
     );
     const notebooksInfo = await Promise.all(notebooksInfoPromises);
+    
     const storeId = req.params.storeId;
     const store = await Store.findById(storeId);
-    
+
     if(!store) {
         return res.status(404).json({
             ok: false,
             message: 'Store not found',
         });
     }
+    else {
+        res.status(200).json({
+            message: 'Notebooks loaded successfully',
+            data: notebooksInfo
+        });
+        console.log('notebooksInfo ===>', notebooksInfo);
+        return notebooksInfo;
+    }
 
-    res.status(200).json({
-        message: 'Notebooks loaded successfully',
-        data: notebooksInfo
-    });
-    console.log('notebooksInfo ===>', notebooksInfo);
-    return notebooksInfo;
 }
 
 const getNotebooks = async (res = response, req = request) => {
