@@ -35,29 +35,31 @@ const getNotebooksInfo = async (notebookName = '') => {
     const $ = cheerio.load(data);
     const storeId = PCFACTORY.STORE_ID;
     //obtainint id from url
-    const notebookId = Number.parseInt(notebookName.substring(0, notebookName.indexOf('-')));
+    let notebookId = Number.parseInt(notebookName.substring(0, notebookName.indexOf('-')));
     //removing PcFactory's products wrapper
     let productNameWrapper = $('div.product-single__description-mobile');
-    let productImageWraper = $('div.product-single__image-container');
-    let productImageUrlWrapper = $(productImageWraper).find('div.product-single__image');
     let productSummaryWrapper = $('div[data-tab="fichatecnica"]');
     let productSummaryTableWrapper = $(productSummaryWrapper).find('div.table');
     let productPriceWrapper = $('div.product-single__price');
     //getting PcFactory's products Info
     let productName = $(productNameWrapper).find('div.paragraph, color-dark-2').text();
-    let productImage = PCFACTORY.BASE_URL + $(productImageUrlWrapper).find('img').attr('src');
+    let productImage = PCFACTORY.BASE_URL + `public/foto/${notebookId}/1.jpg?t=1646882227?w=500&h=500`;
     let productSummary = $(productSummaryTableWrapper).find('div.table__content, table__content--two-column').text();
     let productPrice = Number.parseInt($(productPriceWrapper).find('meta[itemprop="price"]').attr('content'));
-    if (!notebookId || !productName || !productImage || !productSummary) {
-        return null;
+    if (!productName) {
+        notebookId = 0;
+        productName = 'Producto no encontrado';
+        productImage = ' ';
+        productSummary = ' ';
+        productPrice = 0;
     }
     const productInfo = {
         storeId,
         notebookId,
         url,
-        productName, 
-        productImage, 
-        productSummary, 
+        productName,
+        productImage,
+        productSummary,
         productPrice
     }
     //console.log('productInfo ===>', productInfo);
