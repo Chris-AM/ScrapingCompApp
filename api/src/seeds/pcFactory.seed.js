@@ -45,12 +45,13 @@ const getNotebooksInfo = async (notebookName = '') => {
     let productName = $(productNameWrapper).find('div.paragraph, color-dark-2').text();
     let productImage = PCFACTORY.BASE_URL + `public/foto/${notebookId}/1.jpg?t=1646882227?w=500&h=500`;
     let productSummary = $(productSummaryTableWrapper).find('div.table__content, table__content--two-column').text();
+    let parcedProductSummary = productSummary.replace(/(?:\t|\t|)/g, '').replace(/\n/g, ' ').replace('   ', '');
     let productPrice = Number.parseInt($(productPriceWrapper).find('meta[itemprop="price"]').attr('content'));
     if (!productName) {
         notebookId = 0;
         productName = 'Producto no encontrado';
         productImage = ' ';
-        productSummary = ' ';
+        parcedProductSummary = ' ';
         productPrice = 0;
     }
     const productInfo = {
@@ -59,7 +60,7 @@ const getNotebooksInfo = async (notebookName = '') => {
         url,
         productName,
         productImage,
-        productSummary,
+        parcedProductSummary,
         productPrice
     }
     //console.log('productInfo ===>', productInfo);
