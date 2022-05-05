@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { check } = require('express-validator');
 
-const { loadNotebooks, getNotebooks } = require('../controllers/pcFactory.controller');
+const { createNotebooks, getNotebooks } = require('../controllers/pcFactory.controller');
 
 
 const router = Router();
@@ -14,7 +14,7 @@ router.post('/:storeId', [
     check('price', 'Price is required').not().isEmpty(),
     check('summary', 'Summary is required').not().isEmpty(),
     check('storeId', 'Store is required').isMongoId(),
-], loadNotebooks);
+], createNotebooks);
 router.get('/', getNotebooks);
 
 module.exports = router;
